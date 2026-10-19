@@ -1,0 +1,271 @@
+/* ------------------------------------------------------------------
+   Paywand admin theme
+   Brand: lapis #23408E · saffron #E2A72E · pomegranate #B0283F
+   Loaded after Payload's own CSS, so equal-specificity rules win.
+   ------------------------------------------------------------------ */
+
+@font-face {
+  font-family: 'Instrument Sans Variable';
+  src: url('/fonts/instrument-sans-latin-wght-normal.woff2') format('woff2-variations');
+  font-weight: 400 700;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Literata Variable';
+  src: url('/fonts/literata-latin-wght-normal.woff2') format('woff2-variations');
+  font-weight: 200 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+:root {
+  --pw-primary: #23408e;
+  --pw-primary-strong: #1b2f66;
+  --pw-primary-deep: #16254f;
+  --pw-accent: #e2a72e;
+  --pw-highlight: #b0283f;
+
+  --font-body: 'Instrument Sans Variable', system-ui, -apple-system, sans-serif;
+  --font-serif: 'Literata Variable', Georgia, serif;
+
+  /* softer corners everywhere */
+  --style-radius-s: 6px;
+  --style-radius-m: 10px;
+  --style-radius-l: 14px;
+}
+
+/* Calmer canvas in light mode */
+html[data-theme='light'] {
+  --theme-bg: #f6f7fb;
+  --theme-input-bg: #ffffff;
+}
+
+/* ---------- Sidebar: light, with clear grouping ---------- */
+.nav {
+  .nav__wrap {
+    gap: 0.25rem;
+  }
+
+  /* group headers: small caps, muted, clearly separated sections */
+  .nav-group__toggle {
+    text-transform: uppercase;
+    letter-spacing: 0.09em;
+    font-size: 0.7rem;
+    font-weight: 700;
+    color: var(--theme-elevation-500);
+  }
+  .nav-group__toggle:hover {
+    color: var(--pw-primary);
+  }
+  .nav-group {
+    border-top: 1px solid var(--theme-elevation-100);
+    margin-top: 0.6rem;
+    padding-top: 0.6rem;
+  }
+  .nav-group:first-of-type {
+    border-top: none;
+    margin-top: 0;
+    padding-top: 0;
+  }
+  .nav-group__indicator {
+    color: var(--theme-elevation-400);
+  }
+
+  /* links: indented under their group, pill hover, lapis active state */
+  .nav__link {
+    border-radius: var(--style-radius-s);
+    color: var(--theme-elevation-750);
+    padding-block: 0.32rem;
+    transition: background-color 0.12s ease, color 0.12s ease;
+  }
+  .nav__link:hover {
+    background: var(--theme-elevation-50);
+    color: var(--theme-elevation-1000);
+  }
+  .nav__link--active,
+  .nav__link[aria-current='page'] {
+    background: color-mix(in srgb, var(--pw-primary) 10%, transparent);
+    color: var(--pw-primary);
+    font-weight: 600;
+  }
+  .nav__link--active .nav__link-indicator {
+    background: var(--pw-accent);
+  }
+
+  .nav__log-out:hover {
+    color: var(--pw-highlight);
+  }
+}
+
+/* ---------- Header ---------- */
+.app-header {
+  border-block-end: 1px solid var(--theme-elevation-100);
+}
+
+/* ---------- Buttons ---------- */
+.btn--style-primary {
+  background: var(--pw-primary);
+  color: #fff;
+
+  &:hover,
+  &:focus-visible {
+    background: var(--pw-primary-strong);
+    color: #fff;
+  }
+  &:active {
+    background: var(--pw-primary-deep);
+  }
+}
+.btn--style-secondary {
+  box-shadow: inset 0 0 0 1px var(--theme-elevation-200);
+  &:hover {
+    box-shadow: inset 0 0 0 1px var(--pw-primary);
+    color: var(--pw-primary);
+  }
+}
+.btn {
+  border-radius: var(--style-radius-s);
+}
+
+/* ---------- Inputs ---------- */
+.field-type {
+  input,
+  textarea,
+  select,
+  .rs__control {
+    border-radius: var(--style-radius-s);
+    transition: border-color 0.12s ease, box-shadow 0.12s ease;
+  }
+  input:focus,
+  textarea:focus,
+  select:focus,
+  input:focus-visible,
+  textarea:focus-visible {
+    border-color: var(--pw-primary);
+    box-shadow: 0 0 0 3px color-mix(in srgb, var(--pw-primary) 22%, transparent);
+    outline: none;
+  }
+}
+
+/* ---------- Dashboard ---------- */
+.collections__label,
+.dashboard__label {
+  font-family: var(--font-serif);
+  font-size: 1.2rem;
+  font-weight: 600;
+  letter-spacing: 0;
+  text-transform: none;
+  color: var(--theme-elevation-800);
+}
+.collections__label::after,
+.dashboard__label::after {
+  content: '';
+  display: block;
+  width: 2.75rem;
+  height: 3px;
+  margin-top: 0.4rem;
+  border-radius: 99px;
+  background: linear-gradient(90deg, var(--pw-primary) 0 55%, var(--pw-accent) 55%);
+}
+.card {
+  border-radius: var(--style-radius-m);
+  border: 1px solid var(--theme-elevation-100);
+  background: var(--theme-input-bg);
+  transition: border-color 0.15s ease, box-shadow 0.15s ease, transform 0.15s ease;
+
+  &:hover {
+    border-color: color-mix(in srgb, var(--pw-primary) 45%, transparent);
+    box-shadow: 0 6px 18px -8px color-mix(in srgb, var(--pw-primary) 35%, transparent);
+    transform: translateY(-1px);
+  }
+}
+.card__title {
+  font-weight: 600;
+}
+.card__actions .btn {
+  color: var(--pw-primary);
+}
+
+/* ---------- Lists & tables ---------- */
+.table {
+  border-radius: var(--style-radius-m);
+
+  thead th {
+    background: var(--theme-elevation-50);
+    font-weight: 600;
+  }
+  tbody tr {
+    transition: background-color 0.1s ease;
+  }
+  tbody tr:hover {
+    background: color-mix(in srgb, var(--pw-primary) 4%, transparent);
+  }
+}
+.pill {
+  border-radius: 99px;
+}
+
+/* ---------- Links ---------- */
+.template-default a:not(.btn):not(.nav__link):not(.card) {
+  &:hover {
+    color: var(--pw-primary);
+  }
+}
+
+/* ---------- Login / unauthenticated screens ---------- */
+.template-minimal {
+  background:
+    radial-gradient(60rem 30rem at 85% -10%, color-mix(in srgb, var(--pw-accent) 14%, transparent), transparent 60%),
+    radial-gradient(50rem 30rem at -10% 110%, color-mix(in srgb, var(--pw-primary) 12%, transparent), transparent 60%),
+    var(--theme-bg);
+}
+.template-minimal__wrap {
+  border: 1px solid var(--theme-elevation-100);
+  border-radius: var(--style-radius-l);
+  background: var(--theme-input-bg);
+  box-shadow: 0 20px 50px -24px color-mix(in srgb, var(--pw-primary-deep) 45%, transparent);
+  padding: 2.25rem;
+  /* brand band on top of the card */
+  border-top: 5px solid var(--pw-accent);
+}
+
+/* The AdminLogo graphic on the login page */
+.pw-admin-logo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  margin-bottom: 0.75rem;
+}
+.pw-admin-logo__words {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.15;
+  text-align: start;
+}
+.pw-admin-logo__name {
+  font-family: var(--font-serif);
+  font-weight: 650;
+  font-size: 1.6rem;
+  color: var(--theme-text);
+}
+.pw-admin-logo__ev {
+  font-weight: 400;
+  color: var(--theme-elevation-500);
+}
+.pw-admin-logo__native {
+  font-size: 1.05rem;
+  color: var(--pw-primary);
+}
+html[data-theme='dark'] .pw-admin-logo__native {
+  color: var(--pw-accent);
+}
+
+/* ---------- Misc polish ---------- */
+.step-nav {
+  font-size: 0.85rem;
+}
+::selection {
+  background: color-mix(in srgb, var(--pw-accent) 45%, transparent);
+}
