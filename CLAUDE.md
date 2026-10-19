@@ -9,6 +9,7 @@ Mission: *Gemeinsam für Integration, Bildung, Jugendförderung, Kultur und inte
 Audience: Afghan families and youth in Berlin, German neighbours, volunteers, funders (Bezirksamt, Senat, foundations).
 Domain candidates: paywand.de (recommended primary), paywand.org, paywand-ev.de, paywand-ev.org – availability not yet checked.
 Developer: Jan (Ubuntu/WSL, VS Code, project in `~/dev/paywand`).
+Git remote: https://github.com/ahmadzai/paywand.git (branch `main`, since 2026-10-19). `.env`, databases and uploads (`media/`, `documents/`, `private/`) are gitignored – a fresh clone needs `.env` from `.env.example`, the Postgres container and `npm run seed`.
 
 ## Requirements from the client
 
